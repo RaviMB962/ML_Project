@@ -44,6 +44,18 @@ To create version/commit all changes by git
 git commit -m "message"
 '''
 
+To send changes to guitgub
+
+'''
+git push origin main
+'''
+
+To check commond url
+'''
+git remote -v
+'''
+
+
 
 
 
