@@ -3,9 +3,14 @@
 
 # Software and account requirements.
 1. [Github Account](https://github.com/)
-2. [Cyclic Account](https://app.cyclic.sh/#/account)
+2. [Render Account](https://dashboard.render.com/)
 3. [VS Code](https://code.visualstudio.com/Download)
 4. [GIT cli]()
+
+
+# Deployment Steps
+
+https://youtu.be/4SO3CUWPYf0?si=npzjmX1HmKENCT25
 
 # Creating conda env
 
@@ -45,7 +50,7 @@ To create version/commit all changes by git
 git commit -m "message"
 ```
 
-To send changes to guitgub
+To send changes to gitgub
 
 ```
 git push origin main
@@ -87,6 +92,11 @@ To stop docker container
 ```
 docker stop <container_id>
 ```
+
+```
+python setup.py install
+```
+
 
 
 
