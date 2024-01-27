@@ -1,4 +1,4 @@
-from setuptools import  setup
+from setuptools import  setup, find_packages
 from typing import List
 
 
@@ -10,7 +10,7 @@ from typing import List
 #Declaring varibales for set up function
 
 PROJECT_NAME = "housing-predictor"
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 AUTHOR = "Ravi M B"
 DESCRIPTION = "Trying to build Simple ML project"
 PACKAGES= ["housing"]
@@ -24,7 +24,7 @@ def get_requirements_list()->List[str]:
     return: a list of name of libraries mentioned in requirements.txt
     """
     with open(REQUIREMENT_FILE_NAME) as requirement_file:
-        return requirement_file.readlines()
+        return [line.strip() for line in requirement_file if "-e ." not in line]
 
 setup(
 
@@ -32,7 +32,7 @@ setup(
     version= VERSION,
     author= AUTHOR,
     description= DESCRIPTION,
-    packages= PACKAGES,
+    packages= find_packages(),
     install_requires=get_requirements_list()
 )
 
