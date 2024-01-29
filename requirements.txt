@@ -3,4 +3,6 @@ Flask
 gunicorn
 scikit-learn
 pandas
+PyYAML
 -e .
+
