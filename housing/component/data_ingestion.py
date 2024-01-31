@@ -39,7 +39,7 @@ class DataIngestion:
             logging.info(f"Downloading file from : [{download_url}] into :[{tgz_file_path}]")
             logging.info(f"File: [{tgz_file_path}] has been downloaded successfully")
 
-            urllib.request.urlretrive(download_url, tgz_file_path)
+            urllib.request.urlretrieve(download_url, tgz_file_path)
 
             return tgz_file_path
 
@@ -76,7 +76,7 @@ class DataIngestion:
 
             housing_data_frame = pd.read_csv(housing_file_path)
 
-            housing["income_cat"] = pd.cut(
+            housing_data_frame["income_cat"] = pd.cut(
                 housing_data_frame["median_income"],
                 bins = [0.0, 1.5, 3.0, 4.5, 6.0 , np.inf],
                 labels = [1,2,3,4,5]
@@ -88,7 +88,7 @@ class DataIngestion:
             strat_train_set = None
             strat_test_set = None
 
-            split = StratifiedShuffleSplit(n_split1, test_size=0.2, random_state=42)
+            split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
 
             for train_index, test_index in split.split(housing_data_frame, housing_data_frame["income_cat"]):
                 strat_train_set = housing_data_frame.loc[train_index].drop(["income_cat"], axis=1)
@@ -113,15 +113,13 @@ class DataIngestion:
                 is_ingested=True,
                 message=f"Data Ingestion Completed Successfully.")
 
-            logger.info(f"Data Ingestion artifact: [{data_ingestion_artifact}]")
+            logging.info(f"Data Ingestion artifact: [{data_ingestion_artifact}]")
 
             return data_ingestion_artifact
 
-
-
-
         except Exception as e:
             raise HousingException(e, sys) from e
+
 
     def intiate_data_ingestion(self) -> DataIngestionArtifact:
         try:
